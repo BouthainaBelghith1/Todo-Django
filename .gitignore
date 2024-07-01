@@ -1,0 +1,26 @@
+# .gitignore
+
+# Environnement Python
+venv/
+*.pyc
+__pycache__/
+
+# Environnement
+.env
+
+# Paramètres Django
+*.log
+*.pot
+*.pyc
+*.so
+.DS_Store
+
+# Database
+db.sqlite3
+db.sqlite3-journal
+
+# Statics
+/static/
+
+# Media
+/media/

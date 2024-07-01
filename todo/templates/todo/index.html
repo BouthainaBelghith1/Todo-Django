@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+    <head>
+        <title>My First PHP Page</title>
+        <link rel="stylesheet" type="text/css" href="{% static "todo/style.css" %}">
+    </head>
+<body>
+<div id="container">
+    <a href="{% url 'about_page' %}">About</a>
+    <h1>My Todo App</h1>
+    <form section='' method='post'>
+        {% csrf_token %}
+        <div class="task">
+            {{ task_form.name}}
+            <input type="submit" name="addtask"></input>
+        </div>
+    </form>
+    <div class="btn-group">
+    <a href="{% url 'delete_all' %}"><button type="button">Delete All</button></a>
+    <a href="{% url 'delete_completed' %}"><button type="button">Delete Completed</button></a>
+    </div>
+    <ul>
+    {% for task in all_tasks %}
+        {% if not task.completed %}
+           <a href="{% url 'complete' task.id %}"> <li id="not-completed"><h3> {{ task }}  <a href="{% url 'delete' task.id %}" type="button" style="color:black; background-color:brown; padding:7px; font-weight:normal; font-size:12px">Delete</a></h3> </li>  </a>
+        {% else %}
+        <li id="completed" style="text-decoration:line-through"><h3> {{ task }} <a href="{% url 'delete' task.id %}" type="button" style="color:black; background-color:brown; padding:7px; font-weight:normal; font-size:12px; text-decoration:none">Delete</a></h3></li> 
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
